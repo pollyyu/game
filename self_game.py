@@ -11,8 +11,9 @@ class Engine(object):
     def play(self):
         current_scene = self.scene_map.opening_scene()
         last_scene = self.scene_map.next_scene('end_game')
+        happy_scene = self.scene_map.next_scene('next_season')
         # EndGame.enter(self)
-        while current_scene != last_scene:
+        while current_scene != last_scene or current_scene != happy_scene:
             next_scene_name = current_scene.enter()
             current_scene = self.scene_map.next_scene(next_scene_name)
 
@@ -23,7 +24,18 @@ class Map(object):
     scenes = {
     'end_game': EndGame(),
     'opening': Opening(),
-    'next_season': NextSeason()
+    'next_season': NextSeason(),
+    'vent': Vent(),
+    'escape': Escape(),
+    'driven': Driven(),
+    'bar': Bar(),
+    'facility': Facility(),
+    'unscrabble': Unscrabble(),
+    'clones': Clones(),
+    'drinks': Drinks(),
+    'cat_question': CatQuestion(),
+    'next_season': NextSeason(),
+    'code': Code()
     }
 
     def __init__(self,start_scene):
